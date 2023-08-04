@@ -13,7 +13,7 @@ The CloudBees CD/RO GitHub Actions are called from _steps_ in a GitHub Actions _
 ```yaml
 steps:
   - name: Start Release Action
-    uses: cloudbees/cdro-actions/start-release@main
+    uses: cloudbees-actions/start-release@main
     env:
       CDRO_URL: ${{ secrets.CDRO_URL }}
       CDRO_TOKEN: ${{ secrets.CDRO_TOKEN }}
@@ -73,12 +73,12 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Create release
-        uses: cloudbees/cdro-actions/eval-dsl@main
+        uses: cloudbees-actions/eval-dsl@main
         with:
           dsl-file: simple-release-dsl.groovy
 
       - name: start release
-        uses: cloudbees/cdro-actions/start-release@main
+        uses: cloudbees-actions/start-release@main
         with:
           projectName: Default
           releaseName: My simple release

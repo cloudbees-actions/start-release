@@ -17,7 +17,7 @@ runs:
   steps:
     - name: startRelease API
       id: start-release
-      uses: cloudbees/cdro-actions/eval-dsl@main
+      uses: cloudbees-actions/eval-dsl@main
       with:
         dsl: |
           args.pipelineParameter = args.actualParameter
@@ -29,7 +29,7 @@ runs:
         dsl-actual-parameter: ${{ inputs.pipelineParameter }}
 
     - name: Attach action meta data to runtime object
-      uses: cloudbees/cdro-actions/eval-dsl@main
+      uses: cloudbees-actions/eval-dsl@main
       with:
         dsl: |
           def flowRuntimeId = "${{ fromJson(steps.start-release.outputs.response).flowRuntime.flowRuntimeId }}"
