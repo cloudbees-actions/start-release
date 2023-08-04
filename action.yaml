@@ -1,0 +1,52 @@
+name: 'Start CD/RO release'
+description: Start a release on a remote CloudBees CD/RO instance
+
+inputs:
+  projectName:
+    description: Name of the project to start the release on
+    required: true
+  releaseName:
+    description: Name of the release to start
+    required: true
+  pipelineParameter:
+    description: Actual parameter to pass to the pipeline
+    required: false
+
+runs:
+  using: "composite"
+  steps:
+    - name: startRelease API
+      id: start-release
+      uses: cloudbees/cdro-actions/eval-dsl@main
+      with:
+        dsl: |
+          args.pipelineParameter = args.actualParameter
+          args.actualParameter = null
+          startRelease args
+        dsl-args: |
+          projectName: ${{ inputs.projectName }}
+          releaseName: ${{ inputs.releaseName }}
+        dsl-actual-parameter: ${{ inputs.pipelineParameter }}
+
+    - name: Attach action meta data to runtime object
+      uses: cloudbees/cdro-actions/eval-dsl@main
+      with:
+        dsl: |
+          def flowRuntimeId = "${{ fromJson(steps.start-release.outputs.response).flowRuntime.flowRuntimeId }}"
+          def repository = "${{ github.repository }}"
+          def run_id = "${{ github.run_id }}"
+          setProperty flowRuntimeId: flowRuntimeId,
+            propertyName: "GitHub Actions Workflow URL",
+            value: "https://github.com/${repository}/actions/runs/${run_id}"
+          def firstStageRuntime
+          getPipelineRuntimeDetails(flowRuntimeId : flowRuntimeId)?[0]?.stageRuntimeDetails.any  {
+            if (it.flowRuntimeId) {
+              firstStageRuntime=it.flowRuntimeId
+              return
+            }
+          }
+          if (firstStageRuntime) {
+            setProperty(flowRuntimeId:firstStageRuntime,
+              propertyName: "ec_summary/GitHub Workflow Run",
+              value: "<html><a href='"+"https://github.com/${repository}/actions/runs/${run_id}"+"'>link</a></html>")
+          }
