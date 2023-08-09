@@ -1,15 +1,15 @@
 # Start a Release on a remote CloudBees CD/RO instance
 ## Description
-This is one of serveral GitHub Actions provided on an "as-is" basis by CloudBees that enable users to write GitHub Action Workflows that send work to an external CloudBees CD/RO instance. This particular Action enables workflows to start an existing Release on a remote CloudBees CD/RO instance.
+This is one of several GitHub Actions provided on an "as-is" basis by CloudBees that enable users to write GitHub Action Workflows that send work to an external CloudBees CD/RO instance. This Action enables workflows to start an existing Release on a remote CloudBees CD/RO instance.
 ## Intended audience
-For teams utilizing GitHub Actions for build and continuous integration, the CloudBees CD/RO Actions provide a mechanism for releasing software in a secure, governed and auditable manner with deep visibility as is required in regulated industries, for example. Platform or shared services teams can build out reusable content in the CloudBees CD/RO platform that conforms to company standards and removes the burden of release automation from the application teams.
+For teams utilizing GitHub Actions for build and continuous integration, the CloudBees CD/RO Actions provide a mechanism for releasing software securely, governed, and auditable with deep visibility as is required in regulated industries, for example. Platform or shared services teams can build reusable content in the CloudBees CD/RO platform that conforms to company standards and removes the burden of release automation from the application teams.
 ## Prerequisites
-CloudBees CD/RO is an enterprise "on-premise" product which is used to automate software delivery processes including production deployments and releases. To use utilize this GitHub Action, it is necessary to have a access to a CloudBees CD/RO instance, in particular, 
-- A CloudBees CD/RO instance that GitHub Actions can access through REST calls (TCP port 443)
-- A valid API token for the CloudBees CD/RO instance. A token can be generated from the _Access Token_ link on the user profile page of the CloudBees CD/RO user interface, see [Manage access tokens via the UI](https://docs.beescloud.com/docs/cloudbees-cd/latest/intro/sign-in-cd#_manage_access_tokens_via_the_ui) documentation for details.
-These values should be stored as GitHub Action secrets so they can be referenced securely in a GitHub Actions workflow.
+CloudBees CD/RO is an enterprise "on-premise" product that automate software delivery processes, including production deployments and releases. To use utilize this GitHub Action, it is necessary to have access to a CloudBees CD/RO instance, in particular: 
+* A CloudBees CD/RO instance that GitHub Actions can access through REST calls (TCP port 443)
+* A valid API token for the CloudBees CD/RO instance. A token can be generated from the _Access Token_ link on the user profile page of the CloudBees CD/RO user interface; see [Manage access tokens via the UI](https://docs.beescloud.com/docs/cloudbees-cd/latest/intro/sign-in-cd#_manage_access_tokens_via_the_ui) documentation for details.
+These values should be stored as GitHub Action secrets to be referenced securely in a GitHub Actions workflow.
 ## Usage
-The CloudBees CD/RO GitHub Actions are called from _steps_ in a GitHub Actions _workflow_. The following workflow extract illustrates how to start an existing Release on a remote CloudBees CD/RO instance including _actual parameters_.
+The CloudBees CD/RO GitHub Actions are called from _steps_ in a GitHub Actions _workflow_. The following workflow extract illustrates how to start an existing Release on a remote CloudBees CD/RO instance, including _actual parameters_.
 ```yaml
 steps:
   - name: Start Release Action
@@ -54,7 +54,7 @@ project "Default",{
 	}
 }
 ```
-3. Create new workflow file in the `.github/workflows` directory, for example, `simple-release.yml`:
+3. Create a new workflow file in the `.github/workflows` directory, for example, `simple-release.yml`:
 ```yaml
 name: Create and start release
 
@@ -89,7 +89,7 @@ jobs:
 ```
 4. Go to the GitHub `Actions` tab and start the workflow `Create and start release`
 ## License
-MIT
+The scripts and documents in this project are released under the MIT license.
 ## Documentation
-For further details on the CloudBees CD/RO product, refer to the [on-line documentation](https://docs.beescloud.com/docs/cloudbees-cd/latest/).
+For more details about the CloudBees CD/RO product, view the [online documentation](https://docs.cloudbees.com/docs/cloudbees-cd/latest/).
 
