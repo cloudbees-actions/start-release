@@ -92,6 +92,8 @@ jobs:
             Input1: xyz
 ```
 4. Go to the GitHub `Actions` tab and start the workflow `Create and start release`
+## Sample build and release repository
+The [CloudBees CD/RO GitHub Actions Demonstration Repository](https://github.com/cloudbees-demos/gh-actions-demo) illustrates how to implement a build and release workflow with the CloudBees CD/RO GitHub Actions.
 ## License
 The scripts and documentation in this project are released under the MIT License.
 ## Documentation
