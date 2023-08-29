@@ -1,5 +1,8 @@
 name: 'Start CD/RO release'
 description: Start a release on a remote CloudBees CD/RO instance
+branding:
+  icon: 'command'
+  color: 'blue'
 
 inputs:
   projectName:
