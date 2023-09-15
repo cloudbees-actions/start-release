@@ -34,6 +34,7 @@ runs:
           projectName: ${{ inputs.projectName }}
           releaseName: ${{ inputs.releaseName }}
         dsl-actual-parameter: ${{ inputs.pipelineParameter }}
+        ignore-unverified-cert: ${{ inputs.ignore-unverified-cert }}
 
     - name: Attach action meta data to runtime object
       uses: cloudbees-github-actions/eval-dsl@v1
@@ -57,3 +58,4 @@ runs:
               propertyName: "ec_summary/GitHub Workflow Run",
               value: "<html><a href='"+"https://github.com/${repository}/actions/runs/${run_id}"+"'>link</a></html>")
           }
+        ignore-unverified-cert: ${{ inputs.ignore-unverified-cert }}
